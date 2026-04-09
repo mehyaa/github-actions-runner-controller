@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 
 WORKDIR /src
 
-COPY "Github.EphemeralRunner.Controller.csproj ./
+COPY Github.EphemeralRunner.Controller.csproj .
 
 RUN dotnet restore Github.EphemeralRunner.Controller.csproj
 
