@@ -1,5 +1,5 @@
 using Docker.DotNet;
-using Github.EphemeralRunner.Controller;
+using Github.ActionsRunner.Controller;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

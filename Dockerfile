@@ -2,13 +2,13 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 
 WORKDIR /src
 
-COPY Github.EphemeralRunner.Controller.csproj .
+COPY Github.ActionsRunner.Controller.csproj .
 
-RUN dotnet restore Github.EphemeralRunner.Controller.csproj
+RUN dotnet restore Github.ActionsRunner.Controller.csproj
 
 COPY . .
 
-RUN dotnet publish Github.EphemeralRunner.Controller.csproj -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish Github.ActionsRunner.Controller.csproj -c Release -o /app/publish /p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 
@@ -16,4 +16,4 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
-ENTRYPOINT ["dotnet", "Github.EphemeralRunner.Controller.dll"]
+ENTRYPOINT ["dotnet", "Github.ActionsRunner.Controller.dll"]

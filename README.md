@@ -1,6 +1,6 @@
-# GitHub Ephemeral Runner Controller
+# GitHub Actions Runner Controller
 
-This project is a .NET Worker Service that monitors a GitHub repository for queued Action jobs and automatically spawns ephemeral GitHub Runners using Docker when a queue is detected.
+This project is a .NET Worker Service that monitors a GitHub repository for queued Action jobs and automatically spawns ephemeral GitHub Actions Runners using Docker when a queue is detected.
 
 ## 🚀 Features
 

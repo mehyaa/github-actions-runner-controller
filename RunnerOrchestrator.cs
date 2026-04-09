@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Github.EphemeralRunner.Controller;
+namespace Github.ActionsRunner.Controller;
 
 public sealed partial class RunnerOrchestrator : BackgroundService
 {
@@ -54,7 +54,7 @@ public sealed partial class RunnerOrchestrator : BackgroundService
             if (_concurrencySemaphore.CurrentCount == 0)
             {
                 await Task.Delay(_options.QueueCheckDelay, stoppingToken);
-                
+
                 continue;
             }
 
@@ -75,7 +75,7 @@ public sealed partial class RunnerOrchestrator : BackgroundService
 
                     queuedCount--;
 
-                    _ = Task.Run(() => SpawnEphemeralRunnerAsync(httpClient, stoppingToken), stoppingToken);
+                    _ = Task.Run(() => SpawnRunnerAsync(httpClient, stoppingToken), stoppingToken);
                 }
             }
             catch (Exception ex)
@@ -84,12 +84,12 @@ public sealed partial class RunnerOrchestrator : BackgroundService
             }
             finally
             {
-                await Task.Delay(_options.QueueCheckDelay, stoppingToken);   
+                await Task.Delay(_options.QueueCheckDelay, stoppingToken);
             }
         }
     }
 
-    private async Task SpawnEphemeralRunnerAsync(HttpClient httpClient, CancellationToken cancellationToken)
+    private async Task SpawnRunnerAsync(HttpClient httpClient, CancellationToken cancellationToken)
     {
         var runnerName = $"ephemeral-runner-{_normalizedRepo}-{Guid.NewGuid().ToString("N")[..6]}";
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Github.EphemeralRunner.Controller;
+namespace Github.ActionsRunner.Controller;
 
 public sealed class RunnerOrchestratorOptions
 {
