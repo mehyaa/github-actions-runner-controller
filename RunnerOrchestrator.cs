@@ -116,7 +116,11 @@ public sealed partial class RunnerOrchestrator : BackgroundService
                     ],
                 HostConfig = new()
                 {
-                    AutoRemove = true
+                    AutoRemove = true,
+                    Binds =
+                        _options.BindHostDockerSocket
+                            ? ["/var/run/docker.sock:/var/run/docker.sock"]
+                            : Array.Empty<string>()
                 }
             };
 

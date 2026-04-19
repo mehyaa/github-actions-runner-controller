@@ -29,14 +29,15 @@ The service polls the GitHub API at set intervals (`QUEUE_CHECK_DELAY`):
 
 You can configure the service using the following environment variables:
 
-| Variable            | Description                               | Default                   |
-| :------------------ | :---------------------------------------- | :------------------------ |
-| `GITHUB_PAT`        | GitHub Personal Access Token (Required)   | -                         |
-| `GITHUB_OWNER`      | Repository owner (User or Organization)   | -                         |
-| `GITHUB_REPO`       | Repository name to monitor                | -                         |
-| `RUNNER_LABEL`      | Additional label to assign to the runners | `custom-ephemeral-runner` |
-| `MAX_CONCURRENCY`   | Maximum number of parallel runners        | `5`                       |
-| `QUEUE_CHECK_DELAY` | Frequency of queue checks (in seconds)    | `15`                      |
+| Variable                  | Description                                           | Default                   |
+| :------------------------ | :---------------------------------------------------- | :------------------------ |
+| `GITHUB_PAT`              | GitHub Personal Access Token (Required)               | -                         |
+| `GITHUB_OWNER`            | Repository owner (User or Organization)               | -                         |
+| `GITHUB_REPO`             | Repository name to monitor                            | -                         |
+| `RUNNER_LABEL`            | Additional label to assign to the runners             | `custom-ephemeral-runner` |
+| `MAX_CONCURRENCY`         | Maximum number of parallel runners                    | `5`                       |
+| `QUEUE_CHECK_DELAY`       | Frequency of queue checks (in seconds)                | `15`                      |
+| `BIND_HOST_DOCKER_SOCKET` | Whether to bind the host Docker socket (true/false)   | `false`                   |
 
 ## 🚀 Getting Started
 
@@ -54,6 +55,7 @@ docker run -d \
   -e GITHUB_OWNER=your_username \
   -e GITHUB_REPO=your_repo \
   -e MAX_CONCURRENCY=5 \
+  -e BIND_HOST_DOCKER_SOCKET=true \
   github-runner-controller
 ```
 
@@ -69,6 +71,7 @@ dotnet restore
 $env:GITHUB_PAT="your_pat"
 $env:GITHUB_OWNER="your_username"
 $env:GITHUB_REPO="your_repo"
+$env:BIND_HOST_DOCKER_SOCKET="true"
 
 # Start the application
 dotnet run

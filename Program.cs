@@ -46,6 +46,7 @@ if (string.IsNullOrEmpty(repo))
 var runnerLabel = builder.Configuration.GetValue<string>("RUNNER_LABEL", "custom-ephemeral-runner");
 var maxConcurrency = builder.Configuration.GetValue("MAX_CONCURRENCY", 5);
 var checkDelaySecond = builder.Configuration.GetValue("QUEUE_CHECK_DELAY", 15);
+var bindHostDockerSocket = builder.Configuration.GetValue("BIND_HOST_DOCKER_SOCKET", false);
 
 var runnerOrchestratorOptions = new RunnerOrchestratorOptions
 {
@@ -53,7 +54,8 @@ var runnerOrchestratorOptions = new RunnerOrchestratorOptions
     Repository = repo,
     RunnerLabel = runnerLabel,
     MaxConcurrency = maxConcurrency,
-    QueueCheckDelay = TimeSpan.FromSeconds(checkDelaySecond)
+    QueueCheckDelay = TimeSpan.FromSeconds(checkDelaySecond),
+    BindHostDockerSocket = bindHostDockerSocket
 };
 
 builder.Services.AddSingleton(runnerOrchestratorOptions);
