@@ -83,4 +83,4 @@ This project is licensed under the [MIT](LICENSE) License.
 
 ## 🙏 Credits
 
-This project utilizes the [myoung34/github-runner](https://github.com/myoung34/docker-github-runner) project for the runner image.
+This project utilizes the [myoung34/github-runner](https://github.com/myoung34/docker-github-actions-runner) project for the runner image.
