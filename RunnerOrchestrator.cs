@@ -12,7 +12,7 @@ namespace Github.ActionsRunner.Controller;
 
 public sealed partial class RunnerOrchestrator : BackgroundService
 {
-    private const string RunnerImage = "myoung34/github-runner";
+    private const string RunnerImage = "ghcr.io/mehyaa/github-runner";
 
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IDockerClient _dockerClient;

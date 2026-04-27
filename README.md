@@ -7,7 +7,7 @@ This project is a .NET Worker Service that monitors a GitHub repository for queu
 -   **On-Demand Resources:** Creates runners only when there are jobs in the queue.
 -   **Ephemeral Runners:** Each runner performs exactly one job and is automatically destroyed afterwards, ensuring a clean environment for every run.
 -   **Concurrency Control:** Limit the maximum number of simultaneous runners via `MAX_CONCURRENCY`.
--   **Docker Based:** Runners run inside Docker containers using the `myoung34/github-runner` image.
+-   **Docker Based:** Runners run inside Docker containers using the `ghcr.io/mehyaa/github-runner` image.
 -   **Cross-Platform:** Supports both Linux (`unix:///var/run/docker.sock`) and Windows (`npipe://./pipe/docker_engine`) Docker sockets.
 
 ## 🛠️ How It Works
@@ -16,7 +16,7 @@ The service polls the GitHub API at set intervals (`QUEUE_CHECK_DELAY`):
 1.  Checks if there are any jobs with a `queued` status in the specified repository.
 2.  If jobs are found and the current runner count is below `MAX_CONCURRENCY`:
     *   Fetches a new **Registration Token** from GitHub.
-    *   Starts a new container on the local Docker Engine using `myoung34/github-runner:latest`.
+    *   Starts a new container on the local Docker Engine using `ghcr.io/mehyaa/github-runner:latest`.
 3.  Once the runner completes its job (`EPHEMERAL=true`), the container automatically removes itself (`AutoRemove = true`).
 
 ## 📋 Prerequisites
@@ -83,4 +83,4 @@ This project is licensed under the [MIT](LICENSE) License.
 
 ## 🙏 Credits
 
-This project utilizes the [myoung34/github-runner](https://github.com/myoung34/docker-github-runner) project for the runner image.
+This project utilizes the [ghcr.io/mehyaa/github-runner](https://github.com/mehyaa/docker-github-actions-runner) project for the runner image.
